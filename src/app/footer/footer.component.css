@@ -1,0 +1,7 @@
+/* src/app/footer/footer.component.scss */
+
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
