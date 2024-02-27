@@ -11,17 +11,20 @@ import { Product } from '../models/product.model';
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private productService: ProductService,private router: Router) {}
 
   ngOnInit(): void {
     this.products = this.productService.getProducts();
   }
 
   addToCart(product: Product): void {
+    console.log('Adding to cart:', product);
     this.productService.addToCart(product);
   }
-
   showDetails(product: Product): void {
     this.router.navigate(['/details', product.id]);
   }
+
+  
+  
 }

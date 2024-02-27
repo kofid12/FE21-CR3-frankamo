@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
 
@@ -13,18 +13,20 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
+    
+    
   ) {}
 
   ngOnInit(): void {
-    const productId = this.route.snapshot.paramMap.get('id');
-    if (productId) {
-      const id = parseInt(productId, 10);
-      this.product = this.productService.getProductById(id);
-    }
+    const productId = Number(this.route.snapshot.paramMap.get('id'));
+    this.product = this.productService.getProductById(productId);
   }
 
-  addToCart(product: Product): void {
-    this.productService.addToCart(product);
+  addToCart(): void {
+    if (this.product) {
+      this.productService.addToCart(this.product);
+    }
   }
 }

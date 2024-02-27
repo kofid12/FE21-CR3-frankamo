@@ -1,9 +1,6 @@
-// src/app/cart/cart.component.ts
-
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductService } from '../services/product.service';
-import { Product } from '../models/product.model'; 
-
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-cart',
@@ -11,13 +8,16 @@ import { Product } from '../models/product.model';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-  cartItems: Product[] = []; 
+  cartItems: Product[] = [];
 
   constructor(private productService: ProductService) {
     this.cartItems = this.productService.getCart();
+    console.log('Initial Cart Contents:', this.cartItems);
+
   }
 
   getTotal(): number {
     return this.productService.getTotal();
   }
 }
+
